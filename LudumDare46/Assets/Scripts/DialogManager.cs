@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class DialogManager : MonoBehaviour
     public bool currentlyTyping = true;
     public int choiceNumber = 0;
     public bool makingChoice = false;
+    public GameObject gameHandler;
 
 
     void Start()
@@ -51,6 +53,18 @@ public class DialogManager : MonoBehaviour
             proceedButton.GetComponent<RawImage>().enabled = false;
         }
 
+        //ending dialogue and returning to map screen. When you want dialogue to end, make the index ahead of the current one say "End"
+        if (Input.GetButtonDown("Fire1") && currentlyTyping == false && textDisplay.text == sentences[index] && sentences[index + 1] == "End")
+        {
+            SceneManager.UnloadSceneAsync(gameHandler.GetComponent<GameHandler>().currentScenario);
+            Debug.Log("Return to map");
+            GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().destinationScene = "";
+            GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().DisableMarkers();
+            GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
+            
+        }
+
+
         if (makingChoice == false)
         { 
             //this starts up the typing again after making a button choice
@@ -81,12 +95,6 @@ public class DialogManager : MonoBehaviour
                 currentlyTyping = false;
             }
         }
-        //ending dialogue and returning to map screen. When you want dialogue to end, make the index ahead of the current one say "End"
-        if (Input.GetButtonDown("Fire1") && currentlyTyping == false && sentences[index + 1] == "End")
-        {
-            Debug.Log("Return to map");
-        }
-
             //the game will now a choice is active when the string after the current string in the array is null with no text
             if (currentlyTyping == false && textDisplay.text == sentences[index] && sentences[index + 1] == "")
         {

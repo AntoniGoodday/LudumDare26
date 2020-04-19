@@ -19,6 +19,12 @@ public class LocationMarkerScript : MonoBehaviour
     public List<GameObject> Connections { get => connections; set => connections = value; }
     public int SceneNumber { get => sceneNumber; set => sceneNumber = value; }
 
+    public string destinationScene;
+    public bool markerActive = false;
+    public bool markerClear = false;
+    public int markerValue;
+    public GameObject playerObject;
+
     [SerializeField]
     List<LineRenderer> lines;
 
@@ -41,22 +47,70 @@ public class LocationMarkerScript : MonoBehaviour
             _lineRend.material = lineMaterial;
             _lineRend.textureMode = LineTextureMode.Tile;
             lines.Add(_lineRend);
-            i++;
+            i++;       
         }
         ToggleMarkers();
     }
 
     private void OnMouseDown()
     {
-        playerMapScript.GoToDestination(gameObject);
+        //make sure marker hasnt already been visited
+
+        //need to check if the clicked marker is actually connected to the current marker
+        if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().connections.Contains(this.gameObject))
+        {
+            //now check if current marker is actually cleared so you dont just skip all the events
+            if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().markerClear == true)
+            {
+                playerMapScript.GoToDestination(gameObject);
+                // markerActive = true;
+                //when a map market is clicked, tell the GoInside script what scene is assigned to this marker
+                //so that when we click "go inside" it knows wha scene to go to
+                goInside.GetComponent<GoInsideScript>().destinationScene = destinationScene;
+            }
+        }
     }
 
+    void Update()
+    {
+        //if no destination on this marker, it means it has been cleared, set to green
+        if (destinationScene == "" && markerClear == false)
+        {
+            DisableMarkers();
+            this.GetComponent<SpriteRenderer>().color = Color.green;
+            markerClear = true;
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (i > 0)
+                {
+                    lines[i].enabled = true;
+                }
+            }
+        }
+    }
     public void ToggleMarkers()
     {
         foreach (LineRenderer l in lines)
         {
-            l.enabled = !l.enabled;
+            l.enabled = !l.enabled; 
         }
-
+        //if marker isnt clear, dont show lines in front of current marker as it hasnt been cleared yet
+        if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().markerClear == false)
+        {
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (i >= 0)
+                {
+                    lines[i].enabled = false;
+                }
+            }
+        }
+    }
+    public void DisableMarkers()
+    {
+        foreach (LineRenderer l in lines)
+        {
+            l.enabled = false;
+        }
     }
 }

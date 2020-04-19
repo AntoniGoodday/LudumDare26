@@ -9,7 +9,7 @@ public class PlayerMapScript : MonoBehaviour
     private GoInsideScript goInsideScript;
 
     public GameObject CurrentLocation { get => currentLocation; set => currentLocation = value; }
-    bool isMoving = false;
+    public bool isMoving = false;
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class PlayerMapScript : MonoBehaviour
     IEnumerator LerpToDestination(GameObject destination)
     {
         isMoving = true;
-        goInsideScript.ToggleVisibility();
+        goInsideScript.DisableVisibility();
         float _elapsedTime = 0;
 
         while(_elapsedTime < 3)
@@ -53,11 +53,9 @@ public class PlayerMapScript : MonoBehaviour
             yield return null;
         }
         transform.position = destination.transform.position;
-        currentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
         currentLocation = destination;
-        currentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
         goInsideScript.LocationSceneNumber = currentLocation.GetComponent<LocationMarkerScript>().SceneNumber;
-        goInsideScript.ToggleVisibility();
+        currentLocation.GetComponent<LocationMarkerScript>().markerActive = true;
         isMoving = false;
     }
 }
