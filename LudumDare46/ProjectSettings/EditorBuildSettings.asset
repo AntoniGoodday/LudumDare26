@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenarios/BanditTrio.unity
     guid: 87e05797e3c4ccd4797742892ed587b5
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/WaterPuddle.unity
+    guid: 7b6dc6fe236bea54892b4ba92497c13d
   m_configObjects: {}

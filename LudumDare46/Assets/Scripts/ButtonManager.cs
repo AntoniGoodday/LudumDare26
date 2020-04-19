@@ -47,30 +47,55 @@ public class ButtonManager : MonoBehaviour
             //bandit trio
             if (gameHandler.GetComponent<GameHandler>().currentScenario == "BanditTrio")
             {
-                //the first decision to be made
+                //the first decision to be made, approaching the trio
                 if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
                 {
-                    middleButton.SetActive(false);
-                    leftButtonText.text = "Don't interrupt them.";
-                    rightButtonText.text = "Say hello.";
+                    leftButtonText.text = "Say hello.";
+                    middleButtonText.text = "Steal their food in secrecy.";
+                    rightButtonText.text = "Don't disturb them.";
 
                     //now for what happens when you actually make the choice
                     //your choice will make the index of the dialogmanagers array move to the appropriate spot depending on decision
-                    //dont interrupt the trio
+                    //say hello
                     if (buttonPressed == 1)
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 6;
                     }
+                    //steal food
+                    if (buttonPressed == 2)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 19;
+                    }
+                    //dont disturb
                     if (buttonPressed == 3)
                     {
                         HideButtons();
-                        dialogManager.GetComponent<DialogManager>().index = 9;
+                        dialogManager.GetComponent<DialogManager>().index = 23;
+                    }
+                }
+
+                //the second decision to be made, joining them for the evening
+               else if (dialogManager.GetComponent<DialogManager>().choiceNumber == 1)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Accept the offer.";
+                    rightButtonText.text = "Decline.";
+                    //accepting the offer
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 10;
+                    }
+                    //declining the offer
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 15;
                     }
                 }
             }
-
-
         }
        
     }
@@ -83,6 +108,7 @@ public class ButtonManager : MonoBehaviour
         rightButton.SetActive(false);
         dialogManager.GetComponent<DialogManager>().choiceNumber += 1;
         dialogManager.GetComponent<DialogManager>().makingChoice = false;
+        buttonPressed = 0;
     }
 
     void ShowButtons()

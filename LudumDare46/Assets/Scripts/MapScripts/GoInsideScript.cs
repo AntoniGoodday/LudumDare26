@@ -12,6 +12,7 @@ public class GoInsideScript : MonoBehaviour
     public int LocationSceneNumber { get => locationSceneNumber; set => locationSceneNumber = value; }
     public string destinationScene;
     public GameObject playerObject;
+    public TextMeshProUGUI buttonText;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,11 @@ public class GoInsideScript : MonoBehaviour
         if (destinationScene != "" && playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().markerActive == true)
         {
             EnableVisibility();
+        }
+        //the button on the text
+        if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation != null)
+        {
+            buttonText.text = playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().destinationTitle;
         }
     }
 
