@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42372f43eff812045ad5f12b97d65364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScenario: BanditTrio
+  currentScenario: WaterPuddle
   centerArt: {fileID: 1950503469}
 --- !u!4 &299134047
 Transform:
@@ -716,31 +716,15 @@ MonoBehaviour:
   - You wonder whether you should drink it or use it to keep your only company alive.
   - What will you do?
   - 
-  - They appear to be friendly companions trying to survive in this dangerous world,
-    just like you.
-  - After exchanging stories, they offer you some wine and some bread, as well as
-    a place to sleep in security, just for tonight.
-  - 
-  - Bread, wine, games and friends, what could possibly be better? After such a comfortable
-    evening, you lie down and gaze at the stars.
-  - The next morning, you find that the marauders are nowhere to be found.
-  - Strangely enough, you notice that the plant has been watered.
+  - You bring the liquid to your mouth and drink it with little to no heart. What
+    displeasure! When the morning had just shaken its fans on your burning body!
   - End
   - 
-  - As a stranger to the rogues, you find it dangerous to come and accept their help.
-  - You thank them and decide to head elsewhere.
+  - You decide to give the rank water to the sprout.
+  - At first glance, it seems that the plant does not mind.
   - End
   - 
-  - "\u201CFar from the moon,\u201D you grumbled, picking up the devil's food, \u201CI'll
-    dine in the sun!\u201D"
-  - But it was the sun, that was setting, and the light of the bonfire caught you
-    red handed. The rogues jump at you. The last emotion you felt was that of compassion.
-  - End
-  - 
-  - Besides being a very well-behaved fellow, you also flee from potential danger.
-    Wise yet safe decision.
-  - You decide to head elsewhere, hearing some faint anecdotes you were not supposed
-    to hear in the process. Their voices fade, with them, the light of day.
+  - You decide it would be best to simply ignore the puddle and try your luck elsewhere.
   - End
   - 
   - 
@@ -1268,6 +1252,7 @@ MonoBehaviour:
   playerDrink: {fileID: 0}
   plantDrink: {fileID: 8300000, guid: aff110e949266b34a9929a198d406009, type: 3}
   badEvent: {fileID: 8300000, guid: 5dcfd136ea69b7f4e912b56c05895756, type: 3}
+  goodEvent: {fileID: 0}
   otherAudio: {fileID: 1344020200}
   feastSound: {fileID: 8300000, guid: ecca20415e23539439db5dfd07ec365d, type: 3}
   soundPlayed: 0
@@ -2254,7 +2239,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2096638736}
-  - component: {fileID: 2096638735}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -2262,102 +2246,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &2096638735
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096638734}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e9e0412845967b54a84e017ee1427aaf, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &2096638736
 Transform:
   m_ObjectHideFlags: 0

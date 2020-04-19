@@ -96,6 +96,110 @@ public class ButtonManager : MonoBehaviour
                     }
                 }
             }
+
+
+            //water puddle choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "WaterPuddle")
+            {
+                //what do you do with the water?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    leftButtonText.text = "Drink the water.";
+                    middleButtonText.text = "Give it to the plant.";
+                    rightButtonText.text = "Keep walking.";
+
+                    //drink it
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 7;
+                    }
+                    //give it to plant
+                    if (buttonPressed == 2)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 10;
+                    }
+                    //keep walking
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 14;
+                    }
+                }
+            }
+
+
+
+            //wasteland figure choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "WastelandFigure")
+            {
+                //what do you do with the water?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Greet the stranger.";
+                    rightButtonText.text = "Flee the stanger.";
+
+                    //greet
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 5;
+                    }
+                    //flee
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 14;
+                    }
+                }
+                //what will you share with the stranger
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 1)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Give water.";
+                    rightButtonText.text = "Give food.";
+
+                    //give water
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 11;
+                    }
+                    //give food
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 17;
+                    }
+                }
+            }
+
+            //Arcadia choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "Arcadia")
+            {
+                //what do you do with the water?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Rest.";
+                    rightButtonText.text = "Keep walking.";
+
+                    //rest
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 5;
+                    }
+                    //keep walking
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 9;
+                    }
+                }
+            }
         }
        
     }

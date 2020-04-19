@@ -61,7 +61,7 @@ public class DialogManager : MonoBehaviour
             GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().destinationScene = "";
             GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().DisableMarkers();
             GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
-            
+            GameObject.Find("GoInside").GetComponent<GoInsideScript>().insideScenario = false;
         }
 
 

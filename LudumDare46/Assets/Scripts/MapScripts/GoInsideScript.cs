@@ -13,6 +13,7 @@ public class GoInsideScript : MonoBehaviour
     public string destinationScene;
     public GameObject playerObject;
     public TextMeshProUGUI buttonText;
+    public bool insideScenario = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class GoInsideScript : MonoBehaviour
 
     public void OnGoInside()
     {
+        insideScenario = true;
         SceneManager.LoadScene(destinationScene, LoadSceneMode.Additive);
         //set the markers destination scene as blank so you cant repeat the same scenario over and over
 
