@@ -134,7 +134,7 @@ public class ButtonManager : MonoBehaviour
             //wasteland figure choices
             if (gameHandler.GetComponent<GameHandler>().currentScenario == "WastelandFigure")
             {
-                //what do you do with the water?
+                //do you greet the stranger?
                 if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
                 {
                     middleButton.SetActive(false);
@@ -179,7 +179,7 @@ public class ButtonManager : MonoBehaviour
             //Arcadia choices
             if (gameHandler.GetComponent<GameHandler>().currentScenario == "Arcadia")
             {
-                //what do you do with the water?
+                //will you rest?
                 if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
                 {
                     middleButton.SetActive(false);
@@ -193,6 +193,32 @@ public class ButtonManager : MonoBehaviour
                         dialogManager.GetComponent<DialogManager>().index = 5;
                     }
                     //keep walking
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 9;
+                    }
+                }
+            }
+
+
+            //Birds choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "Birds")
+            {
+                //will you follow the birds?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Follow the birds.";
+                    rightButtonText.text = "Do not follow the birds.";
+
+                    //follow
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 3;
+                    }
+                    //dont follow
                     if (buttonPressed == 3)
                     {
                         HideButtons();

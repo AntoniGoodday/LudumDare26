@@ -129,6 +129,20 @@ public class HealthChanges : MonoBehaviour
 
 
 
+        //birds
+        if (gameHandler.GetComponent<GameHandler>().currentScenario == "Birds")
+        {
+            //lose health if you chase the birds
+            if (dialogManager.GetComponent<DialogManager>().index == 6 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
+            {
+                healthAudio.PlayOneShot(badEvent, 1f);
+                healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
+                healthHandler.GetComponent<HealthStates>().playerHealth -= 1;
+                soundPlayed = dialogManager.GetComponent<DialogManager>().index;
+            }
+        }
+
+
 
 
 
