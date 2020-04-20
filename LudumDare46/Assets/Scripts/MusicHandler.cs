@@ -47,6 +47,7 @@ public class MusicHandler : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        StopAllCoroutines();
         switch(scene.buildIndex)
         {
             case (0):
@@ -77,6 +78,11 @@ public class MusicHandler : MonoBehaviour
             case (4):
                 {
                     ReplaceWindWith(2);
+                    break;
+                }
+            default:
+                {
+                    StartCoroutine(FadeAudioSource(audioSources[1], fadeoutDuration, 0));
                     break;
                 }
         }

@@ -98,6 +98,7 @@ public class LocationMarkerScript : MonoBehaviour
         }
     }
     //choose random encounter, then remove from pool
+    //Edit here if you'd like some prerequesites for particular random encounters
     void SetRandomEncounter()
     {
         if(randomEncounters != null && setEncounter == false)
@@ -110,7 +111,7 @@ public class LocationMarkerScript : MonoBehaviour
                     _remainingEncounters.Add(randomEncounters.encounterBuildIDs[i]);
                 }
             }
-            int _randomInt = Random.RandomRange(0, _remainingEncounters.Count);
+            int _randomInt = (int)Random.Range(0, _remainingEncounters.Count);
 
             sceneNumber = _remainingEncounters[_randomInt];
 

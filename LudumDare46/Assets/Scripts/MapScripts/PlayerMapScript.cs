@@ -11,13 +11,15 @@ public class PlayerMapScript : MonoBehaviour
     [SerializeField]
     RandomEncounters randomEncounters;
 
+    AudioSource footsteps;
+
     public GameObject CurrentLocation { get => currentLocation; set => currentLocation = value; }
     public bool isMoving = false;
 
     private void Awake()
     {
         transform.position = currentLocation.transform.position;
-
+        footsteps = GetComponent<AudioSource>();
         //resettin the random encounters on new game
         for (int j = 0; j < randomEncounters.usedEncounters.Count; j++)
         {
@@ -50,6 +52,7 @@ public class PlayerMapScript : MonoBehaviour
     }
     IEnumerator LerpToDestination(GameObject destination)
     {
+        footsteps.Play();
         isMoving = true;
         goInsideScript.DisableVisibility();
         float _elapsedTime = 0;
@@ -68,5 +71,6 @@ public class PlayerMapScript : MonoBehaviour
         goInsideScript.LocationSceneNumber = currentLocation.GetComponent<LocationMarkerScript>().SceneNumber;
         currentLocation.GetComponent<LocationMarkerScript>().markerActive = true;
         isMoving = false;
+        footsteps.Stop();
     }
 }
