@@ -66,6 +66,14 @@ public class MusicHandler : MonoBehaviour
                     StartCoroutine(FadeAudioSource(audioSources[4], fadeoutDuration, 1));
                     break;
                 }
+            case (1):
+                {
+                    break;
+                }
+            case (2):
+                {
+                    break;
+                }
             case (3):
                 {
                     if(audioSources[1].isPlaying == false)

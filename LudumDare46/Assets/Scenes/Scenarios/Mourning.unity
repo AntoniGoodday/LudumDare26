@@ -729,7 +729,7 @@ MonoBehaviour:
   makingChoice: 0
   gameHandler: {fileID: 299134045}
   dialogSound: {fileID: 0}
-  typeNoise: {fileID: 8300000, guid: 094f3e7f264b30c479f92ed86568584c, type: 3}
+  typeNoise: {fileID: 8300000, guid: 21b2af24c33c68a4eb0f535b767d56fa, type: 3}
 --- !u!82 &609205246
 AudioSource:
   m_ObjectHideFlags: 0
@@ -744,7 +744,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1341,6 +1341,7 @@ MonoBehaviour:
   plantDrink: {fileID: 8300000, guid: aff110e949266b34a9929a198d406009, type: 3}
   badEvent: {fileID: 8300000, guid: 5dcfd136ea69b7f4e912b56c05895756, type: 3}
   goodEvent: {fileID: 8300000, guid: 54827d0be961352438646f30eccfef4e, type: 3}
+  skeletonBoneScream: {fileID: 0}
   otherAudio: {fileID: 1344020200}
   feastSound: {fileID: 8300000, guid: ecca20415e23539439db5dfd07ec365d, type: 3}
   soundPlayed: 0
