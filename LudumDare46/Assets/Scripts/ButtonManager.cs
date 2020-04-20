@@ -225,6 +225,268 @@ public class ButtonManager : MonoBehaviour
                         dialogManager.GetComponent<DialogManager>().index = 9;
                     }
                 }
+                //this scene is the fake oasis scene, so now we tell the player manager that we have visited the fake oasis, so that
+                //the next oasis will be the real one
+                GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasFakeOasis = true;
+            }
+
+
+            //This Again!?! choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "ThisAgain")
+            {
+                //will you walk to oasis?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Walk to it.";
+                    rightButtonText.text = "Ignore the fool!";
+
+                    //go
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 3;
+                    }
+                    //dont go
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 10;
+                    }
+                }
+            }
+
+
+
+            //Deceased choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "WiseDeceased")
+            {
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    leftButton.SetActive(false);
+                    rightButton.SetActive(false);
+                    middleButtonText.text = "Listen to the skeleton.";
+
+                    //listen to skeleton
+                    if (buttonPressed == 2)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 6;
+                    }
+                }
+                //tell player handler that we have seen the skeleton, so that we may now get the "grave situation" scenario
+                GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasSkeleton = true;
+            }
+
+
+            //Grave Situation
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "GraveSituation")
+            {
+                //recite the words?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    
+                    leftButtonText.text = "Pronounce those words.";
+                    rightButtonText.text = "Stay silent.";
+
+                    //recite
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 5;
+                    }
+                    //dont
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 8;
+                    }
+                }
+            }
+
+
+            //ant choices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "Ant")
+            {
+                //listen or throw the ant
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Listen to the ant.";
+                    rightButtonText.text = "Throw the ant.";
+
+                    //listne
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 9;
+                    }
+                    //throw
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 19;
+                    }
+                }
+            }
+
+
+            //Foxchoices
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "Fox")
+            {
+                //let the fox follow you?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Let the fox follow you.";
+                    rightButtonText.text = "Shoo the fox.";
+
+                    //yes
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 5;
+                        GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasFox = true;
+                    }
+                    //no
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 17;
+                    }
+                }
+                //name the fox
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 1)
+                {
+                    leftButtonText.text = "Cloud.";
+                    middleButtonText.text = "Todd.";
+                    rightButtonText.text = "Scout.";
+
+                    //listne
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 8;
+                    }
+                    //listne
+                    if (buttonPressed == 2)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 11;
+                    }
+                    //throw
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 14;
+                    }
+                }
+            }
+
+
+
+            //Peace walker
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "PeaceWalker")
+            {
+                //pray or rest
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Pray.";
+                    rightButtonText.text = "Rest.";
+
+                    //pray
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 5;
+                    }
+                    //rest
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 8;
+                    }
+                }
+            }
+
+
+            //Mourning
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "Mourning")
+            {
+                //examine tree?
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Examine the tree.";
+                    rightButtonText.text = "Ignore the tree.";
+
+                    //yes
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 5;
+                    }
+                    //no
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 8;
+                    }
+                }
+            }
+
+
+            //Feast
+            if (gameHandler.GetComponent<GameHandler>().currentScenario == "Feast")
+            {
+                //inspect the table
+                if (dialogManager.GetComponent<DialogManager>().choiceNumber == 0)
+                {
+                    leftButtonText.text = "Examine the table.";
+                    middleButtonText.text = "Eat.";
+                    rightButtonText.text = "Flee.";
+
+                    //examine
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 4;
+                    }
+                    //eat
+                    if (buttonPressed == 2)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 7;
+                    }
+                    //flee
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 10;
+                    }
+                }
+
+                //what to do after inspecing table
+                else if (dialogManager.GetComponent<DialogManager>().choiceNumber == 1)
+                {
+                    middleButton.SetActive(false);
+                    leftButtonText.text = "Eat.";
+                    rightButtonText.text = "Flee.";
+                    //eat
+                    if (buttonPressed == 1)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 7;
+                    }
+                    //flee
+                    if (buttonPressed == 3)
+                    {
+                        HideButtons();
+                        dialogManager.GetComponent<DialogManager>().index = 10;
+                    }
+                }
             }
         }
        

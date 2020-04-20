@@ -17,6 +17,8 @@ public class HealthStates : MonoBehaviour
     public int maxPlantHealth = 4;
 
     public bool hasFox = false;
+    public bool hasFakeOasis = false;
+    public bool hasSkeleton = false;
 
 
     // Start is called before the first frame update

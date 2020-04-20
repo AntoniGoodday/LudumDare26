@@ -29,13 +29,28 @@ public class LocationMarkerScript : MonoBehaviour
     public bool markerActive = false;
     public bool markerClear = false;
     public int markerValue;
+    public Sprite markerSprite;
+    public SpriteRenderer markerSpriteRender;
     public GameObject playerObject;
 
     [SerializeField]
     List<LineRenderer> lines;
 
+    void Start()
+    {
+        markerSpriteRender = GetComponent<SpriteRenderer>();
+        if (markerSprite != null)
+        {
+            markerSpriteRender.sprite = markerSprite;
+        }
+        markerSpriteRender.color = Color.white;
+    }
+
+
     private void Awake()
     {
+        
+
         playerMapScript = GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>();
         goInside = GameObject.Find("GoInside");
 
@@ -62,7 +77,6 @@ public class LocationMarkerScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //make sure marker hasnt already been visited
 
         //need to check if the clicked marker is actually connected to the current marker
         if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().connections.Contains(this.gameObject))
@@ -95,6 +109,26 @@ public class LocationMarkerScript : MonoBehaviour
                     lines[i].enabled = true;
                 }
             }
+        }
+
+
+        //if someone causes a future scene to change, such as the fake oasis event, check it here
+        if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasFakeOasis == true && destinationScene == "Birds")
+        {
+            destinationScene = "ThisAgain";
+            destinationTitle = "This, Again!?";
+        }
+
+        if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasSkeleton == true && destinationScene == "WiseDeceased")
+        {
+            destinationScene = "GraveSituation";
+            destinationTitle = "A Grave Situation";
+        }
+
+        if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasFox == true && destinationScene == "WaterPuddle")
+        {
+            destinationScene = "Treachery";
+            destinationTitle = "Treachery!";
         }
     }
     //choose random encounter, then remove from pool
