@@ -41,15 +41,9 @@ public class HealthChanges : MonoBehaviour
             //also needs to track what index of dialog the sound is played on so we can prevent it from repeating the same sound eevry single frame
             if (dialogManager.GetComponent<DialogManager>().index == 10 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
-                otherAudio.PlayOneShot(feastSound, 1f);
                 healthAudio.PlayOneShot(fullHeal, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
-            }
-            //stop feast sound
-            if (dialogManager.GetComponent<DialogManager>().index == 11 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
-            {
-                otherAudio.Stop();
             }
             if (dialogManager.GetComponent<DialogManager>().index == 12 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
@@ -138,6 +132,65 @@ public class HealthChanges : MonoBehaviour
                 healthAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
                 healthHandler.GetComponent<HealthStates>().playerHealth -= 1;
+                soundPlayed = dialogManager.GetComponent<DialogManager>().index;
+            }
+        }
+
+        //this again
+        if (gameHandler.GetComponent<GameHandler>().currentScenario == "ThisAgain")
+        {
+            //fully healed if you go to the real oasis
+            if (dialogManager.GetComponent<DialogManager>().index == 4 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
+            {
+                healthAudio.PlayOneShot(fullHeal, 1f);
+                healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
+                healthHandler.GetComponent<HealthStates>().plantHealth = healthHandler.GetComponent<HealthStates>().maxPlantHealth;
+                soundPlayed = dialogManager.GetComponent<DialogManager>().index;
+            }
+        }
+
+        //grave situation
+        if (gameHandler.GetComponent<GameHandler>().currentScenario == "GraveSituation")
+        {
+            //find the hidden water
+            if (dialogManager.GetComponent<DialogManager>().index == 5 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
+            {
+                healthAudio.PlayOneShot(goodEvent, 1f);
+                if (healthHandler.GetComponent<HealthStates>().playerHealth < healthHandler.GetComponent<HealthStates>().maxPlayerHealth)
+                {
+                    healthHandler.GetComponent<HealthStates>().playerHealth += 1;
+                }
+                if (healthHandler.GetComponent<HealthStates>().plantHealth < healthHandler.GetComponent<HealthStates>().maxPlantHealth)
+                {
+                    healthHandler.GetComponent<HealthStates>().plantHealth += 1;
+                }
+                soundPlayed = dialogManager.GetComponent<DialogManager>().index;
+            }
+        }
+
+
+
+        //mourning
+        if (gameHandler.GetComponent<GameHandler>().currentScenario == "Mourning")
+        {
+            //plant lose 1 health by wasting time at the tree
+            if (dialogManager.GetComponent<DialogManager>().index == 5 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
+            {
+                healthAudio.PlayOneShot(badEvent, 1f);
+                healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
+                soundPlayed = dialogManager.GetComponent<DialogManager>().index;
+            }
+        }
+
+
+        //feast
+        if (gameHandler.GetComponent<GameHandler>().currentScenario == "Feast")
+        {
+            //plant lose 1 health by wasting time at the tree
+            if (dialogManager.GetComponent<DialogManager>().index == 7 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
+            {
+                healthAudio.PlayOneShot(fullHeal, 1f);
+                healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
             }
         }

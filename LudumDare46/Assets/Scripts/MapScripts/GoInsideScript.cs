@@ -44,10 +44,17 @@ public class GoInsideScript : MonoBehaviour
     public void OnGoInside()
     {
         insideScenario = true;
+        if (destinationScene != "Ending")
+        {
         SceneManager.LoadScene(destinationScene, LoadSceneMode.Additive);
         //set the markers destination scene as blank so you cant repeat the same scenario over and over
-
         destinationScene = "";
+        }
+        else if (destinationScene == "Ending")
+        {
+            SceneManager.LoadScene("Ending");
+        }
+
     }
 
     public void EnableVisibility()
