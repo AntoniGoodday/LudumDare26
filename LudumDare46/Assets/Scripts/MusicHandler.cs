@@ -72,6 +72,8 @@ public class MusicHandler : MonoBehaviour
                 }
             case (2):
                 {
+                    StartCoroutine(FadeAudioSource(audioSources[0], fadeoutDuration, 0));
+                    StartCoroutine(FadeAudioSource(audioSources[4], fadeoutDuration, 0));
                     break;
                 }
             case (3):
@@ -109,7 +111,7 @@ public class MusicHandler : MonoBehaviour
             case (22):
                 {
                     StartCoroutine(FadeAudioSource(audioSources[0], fadeoutDuration, 0));
-                    
+                    StartCoroutine(FadeAudioSource(audioSources[4], fadeoutDuration, 0));
                     break;
                 }
             default:
@@ -134,8 +136,8 @@ public class MusicHandler : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().name == "CreditsScene")
         {
-            StartCoroutine(FadeAudioSource(audioSources[0], fadeoutDuration, 1));
-            StartCoroutine(FadeAudioSource(audioSources[2], fadeoutDuration, 0));
+            //StartCoroutine(FadeAudioSource(audioSources[0], fadeoutDuration, 1));
+            //StartCoroutine(FadeAudioSource(audioSources[2], fadeoutDuration, 0));
         }
         //dont play wind ambience when inside a scenario event
         /*if (GameObject.Find("GoInside").GetComponent<GoInsideScript>().insideScenario == true && windAudio.isPlaying)

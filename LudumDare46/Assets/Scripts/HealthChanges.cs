@@ -42,12 +42,14 @@ public class HealthChanges : MonoBehaviour
             //also needs to track what index of dialog the sound is played on so we can prevent it from repeating the same sound eevry single frame
             if (dialogManager.GetComponent<DialogManager>().index == 10 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = -0.6f;
                 healthAudio.PlayOneShot(fullHeal, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
             }
             if (dialogManager.GetComponent<DialogManager>().index == 12 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = 0.6f;
                 healthAudio.PlayOneShot(plantDrink, 1f);
                 healthHandler.GetComponent<HealthStates>().plantHealth = healthHandler.GetComponent<HealthStates>().maxPlantHealth;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -55,6 +57,7 @@ public class HealthChanges : MonoBehaviour
             //the trio kill you
             if (dialogManager.GetComponent<DialogManager>().index == 20 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = -0.6f;
                 healthAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth = 1;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -68,6 +71,7 @@ public class HealthChanges : MonoBehaviour
             //drink bad water, lose health
             if (dialogManager.GetComponent<DialogManager>().index == 7 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = -0.6f;
                 healthAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth -= 1;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -75,6 +79,7 @@ public class HealthChanges : MonoBehaviour
             //give water to plant
             if (dialogManager.GetComponent<DialogManager>().index == 11 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = 0.6f;
                 healthAudio.PlayOneShot(plantDrink, 1f);
                 if (healthHandler.GetComponent<HealthStates>().plantHealth < healthHandler.GetComponent<HealthStates>().maxPlantHealth)
                 {
@@ -91,6 +96,7 @@ public class HealthChanges : MonoBehaviour
             //give water
             if (dialogManager.GetComponent<DialogManager>().index == 11 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = 0.6f;
                 healthAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -98,6 +104,7 @@ public class HealthChanges : MonoBehaviour
             //give food
             if (dialogManager.GetComponent<DialogManager>().index == 17 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = -0.6f;
                 healthAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth -= 1;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -112,10 +119,13 @@ public class HealthChanges : MonoBehaviour
             //rest, plant loses hp, player gains hp
             if (dialogManager.GetComponent<DialogManager>().index == 5 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
-                healthAudio.PlayOneShot(goodEvent, 1f);
+                otherAudio.panStereo = 0.6f;
+                otherAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
                 if (healthHandler.GetComponent<HealthStates>().playerHealth < healthHandler.GetComponent<HealthStates>().maxPlayerHealth)
                 {
+                    healthAudio.panStereo = -0.6f;
+                    healthAudio.PlayOneShot(goodEvent, 1f);
                     healthHandler.GetComponent<HealthStates>().playerHealth += 1;
                 }
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -130,7 +140,10 @@ public class HealthChanges : MonoBehaviour
             //lose health if you chase the birds
             if (dialogManager.GetComponent<DialogManager>().index == 6 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = -0.6f;
                 healthAudio.PlayOneShot(badEvent, 1f);
+                otherAudio.panStereo = 0.6f;
+                otherAudio.PlayOneShot(badEvent, 1f);
                 healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
                 healthHandler.GetComponent<HealthStates>().playerHealth -= 1;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -143,7 +156,10 @@ public class HealthChanges : MonoBehaviour
             //fully healed if you go to the real oasis
             if (dialogManager.GetComponent<DialogManager>().index == 4 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = 0.6f;
                 healthAudio.PlayOneShot(fullHeal, 1f);
+                otherAudio.panStereo = -0.6f;
+                otherAudio.PlayOneShot(fullHeal, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
                 healthHandler.GetComponent<HealthStates>().plantHealth = healthHandler.GetComponent<HealthStates>().maxPlantHealth;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -157,6 +173,7 @@ public class HealthChanges : MonoBehaviour
             //play the scream
             if (dialogManager.GetComponent<DialogManager>().index == 7 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = 0;
                 healthAudio.PlayOneShot(skeletonBoneScream, 1f);
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
             }
@@ -168,13 +185,17 @@ public class HealthChanges : MonoBehaviour
             //find the hidden water
             if (dialogManager.GetComponent<DialogManager>().index == 5 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
-                healthAudio.PlayOneShot(goodEvent, 1f);
+                
                 if (healthHandler.GetComponent<HealthStates>().playerHealth < healthHandler.GetComponent<HealthStates>().maxPlayerHealth)
                 {
+                    healthAudio.PlayOneShot(goodEvent, 1f);
+                    healthAudio.panStereo = -0.6f;
                     healthHandler.GetComponent<HealthStates>().playerHealth += 1;
                 }
                 if (healthHandler.GetComponent<HealthStates>().plantHealth < healthHandler.GetComponent<HealthStates>().maxPlantHealth)
                 {
+                    otherAudio.PlayOneShot(goodEvent, 1f);
+                    otherAudio.panStereo = 0.6f;
                     healthHandler.GetComponent<HealthStates>().plantHealth += 1;
                 }
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
@@ -189,7 +210,9 @@ public class HealthChanges : MonoBehaviour
             //plant lose 1 health by wasting time at the tree
             if (dialogManager.GetComponent<DialogManager>().index == 5 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = 0.6f;
                 healthAudio.PlayOneShot(badEvent, 1f);
+                
                 healthHandler.GetComponent<HealthStates>().plantHealth -= 1;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
             }
@@ -202,7 +225,9 @@ public class HealthChanges : MonoBehaviour
             //plant lose 1 health by wasting time at the tree
             if (dialogManager.GetComponent<DialogManager>().index == 7 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
             {
+                healthAudio.panStereo = -0.6f;
                 healthAudio.PlayOneShot(fullHeal, 1f);
+
                 healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
             }
@@ -216,4 +241,12 @@ public class HealthChanges : MonoBehaviour
 
 
     }
+
+    void GoodEvent()
+    {
+        healthAudio.PlayOneShot(goodEvent, 1f);
+        healthAudio.panStereo = -0.6f;
+    }
+
+
 }
