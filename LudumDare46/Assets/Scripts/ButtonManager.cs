@@ -52,7 +52,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     leftButtonText.text = "Say hello.";
                     middleButtonText.text = "Steal their food in secrecy.";
-                    rightButtonText.text = "Don't disturb them.";
+                    rightButtonText.text = "Don't disturb them. (Risk fatigue)";
 
                     //now for what happens when you actually make the choice
                     //your choice will make the index of the dialogmanagers array move to the appropriate spot depending on decision
@@ -73,6 +73,9 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 23;
+                        //risking fatigue for both player and plant
+                        FatigueRisk();
+
                     }
                 }
 
@@ -106,7 +109,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     leftButtonText.text = "Drink the water.";
                     middleButtonText.text = "Give it to the plant.";
-                    rightButtonText.text = "Keep walking.";
+                    rightButtonText.text = "Keep walking. (Risk fatigue)";
 
                     //drink it
                     if (buttonPressed == 1)
@@ -125,6 +128,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 14;
+                        FatigueRisk();
                     }
                 }
             }
@@ -139,7 +143,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     middleButton.SetActive(false);
                     leftButtonText.text = "Greet the stranger.";
-                    rightButtonText.text = "Flee the stanger.";
+                    rightButtonText.text = "Flee the stanger. (Risk fatigue)";
 
                     //greet
                     if (buttonPressed == 1)
@@ -152,6 +156,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 14;
+                        FatigueRisk();
                     }
                 }
                 //what will you share with the stranger
@@ -184,7 +189,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     middleButton.SetActive(false);
                     leftButtonText.text = "Rest.";
-                    rightButtonText.text = "Keep walking.";
+                    rightButtonText.text = "Keep walking. (Risk fatigue)";
 
                     //rest
                     if (buttonPressed == 1)
@@ -197,6 +202,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 9;
+                        FatigueRisk();
                     }
                 }
             }
@@ -210,7 +216,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     middleButton.SetActive(false);
                     leftButtonText.text = "Follow the birds.";
-                    rightButtonText.text = "Do not follow the birds.";
+                    rightButtonText.text = "Do not follow the birds. (Risk fatigue)";
 
                     //follow
                     if (buttonPressed == 1)
@@ -223,6 +229,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 9;
+                        FatigueRisk();
                     }
                 }
                 //this scene is the fake oasis scene, so now we tell the player manager that we have visited the fake oasis, so that
@@ -239,7 +246,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     middleButton.SetActive(false);
                     leftButtonText.text = "Walk to it.";
-                    rightButtonText.text = "Ignore the fool!";
+                    rightButtonText.text = "Ignore the fool! (Risk fatigue)";
 
                     //go
                     if (buttonPressed == 1)
@@ -252,6 +259,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 10;
+                        FatigueRisk();
                     }
                 }
             }
@@ -420,7 +428,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     middleButton.SetActive(false);
                     leftButtonText.text = "Examine the tree.";
-                    rightButtonText.text = "Ignore the tree.";
+                    rightButtonText.text = "Ignore the tree. (Risk fatigue)";
 
                     //yes
                     if (buttonPressed == 1)
@@ -433,6 +441,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 8;
+                        FatigueRisk();
                     }
                 }
             }
@@ -446,7 +455,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     leftButtonText.text = "Examine the table.";
                     middleButtonText.text = "Eat.";
-                    rightButtonText.text = "Flee.";
+                    rightButtonText.text = "Flee. (Risk fatigue)";
 
                     //examine
                     if (buttonPressed == 1)
@@ -465,6 +474,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 10;
+                        FatigueRisk();
                     }
                 }
 
@@ -473,7 +483,7 @@ public class ButtonManager : MonoBehaviour
                 {
                     middleButton.SetActive(false);
                     leftButtonText.text = "Eat.";
-                    rightButtonText.text = "Flee.";
+                    rightButtonText.text = "Flee. (Risk fatigue)";
                     //eat
                     if (buttonPressed == 1)
                     {
@@ -485,6 +495,7 @@ public class ButtonManager : MonoBehaviour
                     {
                         HideButtons();
                         dialogManager.GetComponent<DialogManager>().index = 10;
+                        FatigueRisk();
                     }
                 }
             }
@@ -492,6 +503,25 @@ public class ButtonManager : MonoBehaviour
        
     }
 
+    void FatigueRisk()
+    {
+        if (UnityEngine.Random.Range(0, 100) > 70)
+        {
+            if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().playerHealth > 1)
+            {
+                GameObject.Find("CharacterIcons").GetComponent<HealthStates>().playerHealth -= 1;
+                GameObject.Find("HealthChangeManager").GetComponent<HealthChanges>().healthAudio.PlayOneShot(GameObject.Find("HealthChangeManager").GetComponent<HealthChanges>().badEvent, 1f);
+            }
+        }
+        if (UnityEngine.Random.Range(0, 100) > 70)
+        {
+            if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().plantHealth > 1)
+            {
+                GameObject.Find("CharacterIcons").GetComponent<HealthStates>().plantHealth -= 1;
+                GameObject.Find("HealthChangeManager").GetComponent<HealthChanges>().healthAudio.PlayOneShot(GameObject.Find("HealthChangeManager").GetComponent<HealthChanges>().badEvent, 1f);
+            }
+        }
+    }
     //when a choice is made, hide the buttons and tell the dialogmanager the choice has been made
     void HideButtons()
     {

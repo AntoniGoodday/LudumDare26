@@ -32,6 +32,7 @@ public class LocationMarkerScript : MonoBehaviour
     public Sprite markerSprite;
     public SpriteRenderer markerSpriteRender;
     public GameObject playerObject;
+    public GameObject randomizerHandler;
 
     [SerializeField]
     List<LineRenderer> lines;
@@ -44,8 +45,70 @@ public class LocationMarkerScript : MonoBehaviour
             markerSpriteRender.sprite = markerSprite;
         }
         markerSpriteRender.color = Color.white;
+
     }
 
+
+    void LateUpdate()
+    { 
+        //ok this is very very messy
+        //basically its going to check what scene name was given to it by the randomizer and change its sprite, title, etc appropriately
+        if (destinationScene == "BanditTrio")
+        {
+            destinationTitle = "A Grand Company";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[0];
+        }
+        if (destinationScene == "WaterPuddle")
+        {
+            destinationTitle = "A Puddle Full Of Promise";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[1];
+        }
+        if (destinationScene == "Arcadia")
+        {
+            destinationTitle = "Et In 'Arcadia' Ego";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[2];
+        }
+        if (destinationScene == "Fox")
+        {
+            destinationTitle = "FriendShip";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[3];
+        }
+        if (destinationScene == "SnakeSalesman")
+        {
+            destinationTitle = "A Snake Oil Salesman";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[4];
+        }
+        if (destinationScene == "WiseDeceased")
+        {
+            destinationTitle = "The Wise Deceased";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[6];
+        }
+        if (destinationScene == "Birds")
+        {
+            destinationTitle = "It's Good Looking And Good Tasting";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[7];
+        }
+        if (destinationScene == "PeaceWalker")
+        {
+            destinationTitle = "Peace Walker";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[8];
+        }
+        if (destinationScene == "Ant")
+        {
+            destinationTitle = "A Little Company";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[9];
+        }
+        if (destinationScene == "Feast")
+        {
+            destinationTitle = "A Feast!";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[11];
+        }
+        if (destinationScene == "WastelandFigure")
+        {
+            destinationTitle = "The WasteLand's Figure";
+            markerSpriteRender.sprite = randomizerHandler.GetComponent<EventRandomizer>().markerIcons[5];
+        }
+    }
 
     private void Awake()
     {
@@ -125,7 +188,7 @@ public class LocationMarkerScript : MonoBehaviour
             destinationTitle = "A Grave Situation";
         }
 
-        if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasFox == true && destinationScene == "WaterPuddle")
+        if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().hasFox == true && destinationScene == "Fox")
         {
             destinationScene = "Treachery";
             destinationTitle = "Treachery!";

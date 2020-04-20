@@ -16,6 +16,7 @@ public class HealthChanges : MonoBehaviour
     public AudioClip plantDrink;
     public AudioClip badEvent;
     public AudioClip goodEvent;
+    public AudioClip skeletonBoneScream;
 
     public AudioSource otherAudio;
     public AudioClip feastSound;
@@ -145,6 +146,18 @@ public class HealthChanges : MonoBehaviour
                 healthAudio.PlayOneShot(fullHeal, 1f);
                 healthHandler.GetComponent<HealthStates>().playerHealth = healthHandler.GetComponent<HealthStates>().maxPlayerHealth;
                 healthHandler.GetComponent<HealthStates>().plantHealth = healthHandler.GetComponent<HealthStates>().maxPlantHealth;
+                soundPlayed = dialogManager.GetComponent<DialogManager>().index;
+            }
+        }
+
+
+        //deceased
+        if (gameHandler.GetComponent<GameHandler>().currentScenario == "WiseDeceased")
+        {
+            //play the scream
+            if (dialogManager.GetComponent<DialogManager>().index == 7 && soundPlayed != dialogManager.GetComponent<DialogManager>().index)
+            {
+                healthAudio.PlayOneShot(skeletonBoneScream, 1f);
                 soundPlayed = dialogManager.GetComponent<DialogManager>().index;
             }
         }
