@@ -56,7 +56,6 @@ public class LocationMarkerScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //make sure marker hasnt already been visited
 
         //need to check if the clicked marker is actually connected to the current marker
         if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().connections.Contains(this.gameObject))

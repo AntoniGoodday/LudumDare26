@@ -1052,7 +1052,7 @@ PrefabInstance:
     - target: {fileID: 2352510837712347208, guid: 4a0d90245658562419b9767c18ed7f78,
         type: 3}
       propertyPath: markerValue
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2352510837712347208, guid: 4a0d90245658562419b9767c18ed7f78,
         type: 3}
@@ -2116,7 +2116,7 @@ PrefabInstance:
         type: 3}
       propertyPath: connections.Array.data[0]
       value: 
-      objectReference: {fileID: 2042532972}
+      objectReference: {fileID: 755033440}
     - target: {fileID: 2352510837712347208, guid: 4a0d90245658562419b9767c18ed7f78,
         type: 3}
       propertyPath: connections.Array.data[1]
@@ -2135,7 +2135,7 @@ PrefabInstance:
     - target: {fileID: 2352510837712347208, guid: 4a0d90245658562419b9767c18ed7f78,
         type: 3}
       propertyPath: markerValue
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2352510837712347208, guid: 4a0d90245658562419b9767c18ed7f78,
         type: 3}
