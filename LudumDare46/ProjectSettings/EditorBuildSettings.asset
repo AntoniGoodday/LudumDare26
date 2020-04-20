@@ -35,4 +35,43 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenarios/Birds.unity
     guid: b36ab050c5411544c8d8d02418f22512
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/WiseDeceased.unity
+    guid: 21851a34f3b1890498b2065d139de595
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Ant.unity
+    guid: 87b8851965a3d0b40b5e79a3e64b5c00
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/ThisAgain.unity
+    guid: 21483ff3ab5c77e478c3f2a454cd4057
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/GraveSituation.unity
+    guid: 2b2f70f9006811343adfe85a32fc6996
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Fox.unity
+    guid: b9eb3f728730db3489af53924716f66a
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Treachery.unity
+    guid: 14dd24b75c87d814ea2305c022d6aae0
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/PeaceWalker.unity
+    guid: 6c08cc99f2147594398666fdf8270244
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Mourning.unity
+    guid: 22533e346c4447049bd2ef5d834ea22f
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Feast.unity
+    guid: 60dc01dee7b9081458e36e1c07626da0
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Monologue.unity
+    guid: 9b46fa8ef26825142b1f0c3fbe2aa314
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Ending.unity
+    guid: 5dffe27deef897d4f8e22183b602e66c
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Intro.unity
+    guid: 3f84a75d9d452314c82ccbbc4bbd25c1
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/GameOver.unity
+    guid: 26db79f7742786241b4874b4d2c8490f
   m_configObjects: {}
