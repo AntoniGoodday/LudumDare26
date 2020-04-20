@@ -39,7 +39,7 @@ public class DialogManager : MonoBehaviour
             {
                 textDisplay.text += letter;
                 dialogSound.PlayOneShot(typeNoise, 1f);
-                yield return new WaitForSeconds(typingSpeed);
+                yield return new WaitForSeconds(typingSpeed * 1.7f);
                 Debug.Log("typing");
             }
         }
