@@ -8,13 +8,24 @@ public class PlayerMapScript : MonoBehaviour
     private GameObject currentLocation;
     private GoInsideScript goInsideScript;
 
+    [SerializeField]
+    RandomEncounters randomEncounters;
+
+    AudioSource footsteps;
+
     public GameObject CurrentLocation { get => currentLocation; set => currentLocation = value; }
-    bool isMoving = false;
+    public bool isMoving = false;
 
     private void Awake()
     {
         transform.position = currentLocation.transform.position;
-        
+        footsteps = GetComponent<AudioSource>();
+        //resettin the random encounters on new game
+        for (int j = 0; j < randomEncounters.usedEncounters.Count; j++)
+        {
+            randomEncounters.usedEncounters[j] = false;
+        }
+
     }
 
     private void Start()
@@ -41,23 +52,25 @@ public class PlayerMapScript : MonoBehaviour
     }
     IEnumerator LerpToDestination(GameObject destination)
     {
+        footsteps.Play();
         isMoving = true;
-        goInsideScript.ToggleVisibility();
+        goInsideScript.DisableVisibility();
         float _elapsedTime = 0;
 
-        while(_elapsedTime < 3)
+        float _distance = Vector3.Distance(currentLocation.transform.position, destination.transform.position);
+
+        while(_elapsedTime < _distance)
         {
-            transform.position = Vector2.Lerp(currentLocation.transform.position, destination.transform.position, _elapsedTime / 3);
+            transform.position = Vector2.Lerp(currentLocation.transform.position, destination.transform.position, _elapsedTime / _distance);
             _elapsedTime += Time.deltaTime;
 
             yield return null;
         }
         transform.position = destination.transform.position;
-        currentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
         currentLocation = destination;
-        currentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
         goInsideScript.LocationSceneNumber = currentLocation.GetComponent<LocationMarkerScript>().SceneNumber;
-        goInsideScript.ToggleVisibility();
+        currentLocation.GetComponent<LocationMarkerScript>().markerActive = true;
         isMoving = false;
+        footsteps.Stop();
     }
 }

@@ -15,6 +15,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/CreditsScene.unity
     guid: 06e5fa4db86ced54682fe97834cacb59
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MapScene.unity
+    guid: 7bf2f001b5a331b438669c782dd24026
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/BanditTrio.unity
+    guid: 87e05797e3c4ccd4797742892ed587b5
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/WaterPuddle.unity
+    guid: 7b6dc6fe236bea54892b4ba92497c13d
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/WastelandFigure.unity
+    guid: 978b948b6c42df4479581e0e7f4800dc
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Arcadia.unity
+    guid: 994b6d192784ba24889b6ad9d19dae4e
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/SnakeSalesman.unity
+    guid: b9a453aa6547abc4490a4451c23615af
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Birds.unity
+    guid: b36ab050c5411544c8d8d02418f22512
   m_configObjects: {}

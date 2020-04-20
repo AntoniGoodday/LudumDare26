@@ -1,0 +1,131 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MusicHandler : MonoBehaviour
+{
+    public static MusicHandler musicHandler;
+
+    [SerializeField]
+    List<AudioSource> audioSources;
+    [SerializeField]
+    AudioSource currentBackgroundEffect = null;
+    [SerializeField]
+    float volumeChangesPerSecond = 10;
+    float fadeoutDuration = 3;
+
+    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (!musicHandler)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            musicHandler = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        if(scene.buildIndex != 3)
+        {
+            StartCoroutine(FadeAudioSource(audioSources[1], fadeoutDuration, 1));
+
+            for (int i = 2; i < audioSources.Count; i++)
+            {
+                StartCoroutine(FadeAudioSource(audioSources[i], fadeoutDuration, 0));
+            }
+        }
+
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StopAllCoroutines();
+        switch(scene.buildIndex)
+        {
+            case (0):
+                {
+                    for (int i = 1; i < audioSources.Count; i++)
+                    {
+                        StartCoroutine(FadeAudioSource(audioSources[i], fadeoutDuration, 0));
+                    }
+                    
+                    break;
+                }
+            case (3):
+                {
+                    if(audioSources[1].isPlaying == false)
+                    {
+                        audioSources[1].Play();
+                    }
+
+                    for(int i = 2; i < audioSources.Count; i++)
+                    {
+                        StartCoroutine(FadeAudioSource(audioSources[i], fadeoutDuration, 0));
+                    }
+
+                    StartCoroutine(FadeAudioSource(audioSources[1], fadeoutDuration, 1));
+
+                    break;
+                }
+            case (4):
+                {
+                    ReplaceWindWith(2);
+                    break;
+                }
+            default:
+                {
+                    StartCoroutine(FadeAudioSource(audioSources[1], fadeoutDuration, 0));
+                    break;
+                }
+        }
+
+
+    }
+
+    
+
+    // Update is called once per frame
+    void Update()
+    {
+        //dont play wind ambience when inside a scenario event
+        /*if (GameObject.Find("GoInside").GetComponent<GoInsideScript>().insideScenario == true && windAudio.isPlaying)
+        {
+            windAudio.Pause();
+        }
+        if (GameObject.Find("GoInside").GetComponent<GoInsideScript>().insideScenario == false && !windAudio.isPlaying)
+        {
+            windAudio.UnPause();
+        }*/
+    }
+
+    public void ReplaceWindWith(int audioSourceNumber)
+    {
+        StartCoroutine(FadeAudioSource(audioSources[1], fadeoutDuration, 0));
+        StartCoroutine(FadeAudioSource(audioSources[audioSourceNumber], fadeoutDuration, 1));
+    }
+
+
+    IEnumerator FadeAudioSource(AudioSource audio, float duration, float targetVolume)
+    {
+        int _steps = (int)(volumeChangesPerSecond * duration);
+        float _stepTime = duration / _steps;
+        float _stepSize = (targetVolume - audio.volume) / _steps;
+
+        for(int i = 1; i < _steps; i++)
+        {
+            audio.volume += _stepSize;
+            yield return new WaitForSeconds(_stepTime);
+        }
+
+        audio.volume = targetVolume;
+    }
+
+}
