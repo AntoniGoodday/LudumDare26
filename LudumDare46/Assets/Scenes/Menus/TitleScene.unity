@@ -1400,6 +1400,11 @@ PrefabInstance:
       propertyPath: audioSources.Array.data[3]
       value: 
       objectReference: {fileID: 1777815696}
+    - target: {fileID: 4048840661390710267, guid: ffbda7025d66e754ea42d7a355109172,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3456431514071733483, guid: ffbda7025d66e754ea42d7a355109172,
         type: 3}
       propertyPath: m_Volume
