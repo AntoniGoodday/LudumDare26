@@ -8,13 +8,22 @@ public class PlayerMapScript : MonoBehaviour
     private GameObject currentLocation;
     private GoInsideScript goInsideScript;
 
+    [SerializeField]
+    RandomEncounters randomEncounters;
+
     public GameObject CurrentLocation { get => currentLocation; set => currentLocation = value; }
     public bool isMoving = false;
 
     private void Awake()
     {
         transform.position = currentLocation.transform.position;
-        
+
+        //resettin the random encounters on new game
+        for (int j = 0; j < randomEncounters.usedEncounters.Count; j++)
+        {
+            randomEncounters.usedEncounters[j] = false;
+        }
+
     }
 
     private void Start()
@@ -45,9 +54,11 @@ public class PlayerMapScript : MonoBehaviour
         goInsideScript.DisableVisibility();
         float _elapsedTime = 0;
 
-        while(_elapsedTime < 3)
+        float _distance = Vector3.Distance(currentLocation.transform.position, destination.transform.position);
+
+        while(_elapsedTime < _distance)
         {
-            transform.position = Vector2.Lerp(currentLocation.transform.position, destination.transform.position, _elapsedTime / 3);
+            transform.position = Vector2.Lerp(currentLocation.transform.position, destination.transform.position, _elapsedTime / _distance);
             _elapsedTime += Time.deltaTime;
 
             yield return null;

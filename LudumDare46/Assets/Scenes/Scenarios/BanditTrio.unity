@@ -1268,6 +1268,7 @@ MonoBehaviour:
   playerDrink: {fileID: 0}
   plantDrink: {fileID: 8300000, guid: aff110e949266b34a9929a198d406009, type: 3}
   badEvent: {fileID: 8300000, guid: 5dcfd136ea69b7f4e912b56c05895756, type: 3}
+  goodEvent: {fileID: 0}
   otherAudio: {fileID: 1344020200}
   feastSound: {fileID: 8300000, guid: ecca20415e23539439db5dfd07ec365d, type: 3}
   soundPlayed: 0
@@ -2261,7 +2262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2096638735
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2269,7 +2270,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096638734}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2c715c93a20e8b34eb9b2f5a5d49163c, type: 3}

@@ -14,6 +14,10 @@ public class LocationMarkerScript : MonoBehaviour
     PlayerMapScript playerMapScript;
 
     [SerializeField]
+    RandomEncounters randomEncounters;
+    bool setEncounter = false;
+
+    [SerializeField]
     GameObject goInside;
 
     public List<GameObject> Connections { get => connections; set => connections = value; }
@@ -34,6 +38,8 @@ public class LocationMarkerScript : MonoBehaviour
     {
         playerMapScript = GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>();
         goInside = GameObject.Find("GoInside");
+
+
         int i = 0;
         foreach (GameObject g in connections)
         {
@@ -65,6 +71,7 @@ public class LocationMarkerScript : MonoBehaviour
             if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().markerClear == true)
             {
                 playerMapScript.GoToDestination(gameObject);
+                SetRandomEncounter();
                 // markerActive = true;
                 //when a map market is clicked, tell the GoInside script what scene is assigned to this marker
                 //so that when we click "go inside" it knows wha scene to go to
@@ -90,6 +97,34 @@ public class LocationMarkerScript : MonoBehaviour
             }
         }
     }
+    //choose random encounter, then remove from pool
+    void SetRandomEncounter()
+    {
+        if(randomEncounters != null && setEncounter == false)
+        {
+            List<int> _remainingEncounters = new List<int>();
+            for(int i = 0; i < randomEncounters.usedEncounters.Count; i++)
+            {
+                if (randomEncounters.usedEncounters[i] == false)
+                {
+                    _remainingEncounters.Add(randomEncounters.encounterBuildIDs[i]);
+                }
+            }
+            int _randomInt = Random.RandomRange(0, _remainingEncounters.Count);
+
+            sceneNumber = _remainingEncounters[_randomInt];
+
+            for (int i = 0; i < randomEncounters.usedEncounters.Count; i++)
+            {
+                if(randomEncounters.encounterBuildIDs[i] == sceneNumber)
+                {
+                    randomEncounters.usedEncounters[i] = true;
+                }
+            }
+            setEncounter = true;
+        }
+    }
+
     public void ToggleMarkers()
     {
         foreach (LineRenderer l in lines)
