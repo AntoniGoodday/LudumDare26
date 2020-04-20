@@ -15,10 +15,13 @@ public class GoInsideScript : MonoBehaviour
     public TextMeshProUGUI buttonText;
     public bool insideScenario = false;
 
+    [SerializeField]
+    List<Image> buttonWithShadow;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -61,10 +64,18 @@ public class GoInsideScript : MonoBehaviour
     {
         gameObject.GetComponent<Image>().enabled = true;
         gameObject.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
+        foreach(Image i in buttonWithShadow)
+        {
+            i.enabled = true;
+        }
     }
     public void DisableVisibility()
     {
         gameObject.GetComponent<Image>().enabled = false;
         gameObject.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+        foreach (Image i in buttonWithShadow)
+        {
+            i.enabled = false;
+        }
     }
 }
