@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/CreditsScene.unity
     guid: 06e5fa4db86ced54682fe97834cacb59
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MapScene.unity
+    guid: 7bf2f001b5a331b438669c782dd24026
   - enabled: 1
     path: Assets/Scenes/Scenarios/BanditTrio.unity
     guid: 87e05797e3c4ccd4797742892ed587b5
