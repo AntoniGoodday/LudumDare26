@@ -735,7 +735,7 @@ MonoBehaviour:
   makingChoice: 0
   gameHandler: {fileID: 299134045}
   dialogSound: {fileID: 0}
-  typeNoise: {fileID: 8300000, guid: 094f3e7f264b30c479f92ed86568584c, type: 3}
+  typeNoise: {fileID: 8300000, guid: 21b2af24c33c68a4eb0f535b767d56fa, type: 3}
 --- !u!82 &609205246
 AudioSource:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class MusicHandler : MonoBehaviour
     AudioSource currentBackgroundEffect = null;
     [SerializeField]
     float volumeChangesPerSecond = 10;
-    float fadeoutDuration = 3;
+    float fadeoutDuration = 0.3f;
 
     // Start is called before the first frame update
     private void Awake()
@@ -33,7 +33,11 @@ public class MusicHandler : MonoBehaviour
 
     void OnSceneUnloaded(Scene scene)
     {
-        if(scene.buildIndex != 3)
+        if(scene.buildIndex == 0 || scene.buildIndex == 1 || scene.buildIndex == 2)
+        {
+            
+        }
+        else if(scene.buildIndex != 3)
         {
             StartCoroutine(FadeAudioSource(audioSources[1], fadeoutDuration, 1));
 
@@ -55,11 +59,11 @@ public class MusicHandler : MonoBehaviour
         {
             case (0):
                 {
-                    for (int i = 1; i < audioSources.Count; i++)
+                    for (int i = 0; i < audioSources.Count-1; i++)
                     {
                         StartCoroutine(FadeAudioSource(audioSources[i], fadeoutDuration, 0));
                     }
-                    
+                    StartCoroutine(FadeAudioSource(audioSources[4], fadeoutDuration, 1));
                     break;
                 }
             case (3):
@@ -86,6 +90,18 @@ public class MusicHandler : MonoBehaviour
             case (18):
                 {
                     ReplaceWindWith(3);
+                    break;
+                }
+            case (21):
+                {
+                    StartCoroutine(SlowFadeAudioSource(audioSources[4], 3, 0));
+                    StartCoroutine(SlowFadeAudioSource(audioSources[0], 3, 1));
+                    break;
+                }
+            case (22):
+                {
+                    StartCoroutine(FadeAudioSource(audioSources[0], fadeoutDuration, 0));
+                    
                     break;
                 }
             default:
@@ -138,6 +154,21 @@ public class MusicHandler : MonoBehaviour
         float _stepSize = (targetVolume - audio.volume) / _steps;
 
         for(int i = 1; i < _steps; i++)
+        {
+            audio.volume += _stepSize;
+            yield return new WaitForSeconds(_stepTime);
+        }
+
+        audio.volume = targetVolume;
+    }
+
+    IEnumerator SlowFadeAudioSource(AudioSource audio, float duration, float targetVolume)
+    {
+        int _steps = (int)(10 * duration);
+        float _stepTime = duration / _steps;
+        float _stepSize = (targetVolume - audio.volume) / _steps;
+
+        for (int i = 1; i < _steps; i++)
         {
             audio.volume += _stepSize;
             yield return new WaitForSeconds(_stepTime);

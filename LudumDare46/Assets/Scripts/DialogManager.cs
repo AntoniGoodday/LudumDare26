@@ -26,23 +26,25 @@ public class DialogManager : MonoBehaviour
     {
         textDisplay = GetComponent<TextMeshProUGUI>();
         dialogSound = GetComponent<AudioSource>();
+        dialogSound.clip = typeNoise;
         StartCoroutine(Typing());
         baseTypingSpeed = typingSpeed;
     }
 
     IEnumerator Typing()
     {
-
+        dialogSound.Play(0);
         foreach (char letter in sentences[index].ToCharArray())
         {
             if (currentlyTyping)
             {
                 textDisplay.text += letter;
-                dialogSound.PlayOneShot(typeNoise, 1f);
+                //dialogSound.PlayOneShot(typeNoise, 1f);
                 yield return new WaitForSeconds(typingSpeed * 1.7f);
                 Debug.Log("typing");
             }
         }
+        dialogSound.Pause();
         currentlyTyping = false;
     }
 
