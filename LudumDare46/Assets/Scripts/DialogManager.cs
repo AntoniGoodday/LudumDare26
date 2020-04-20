@@ -61,7 +61,7 @@ public class DialogManager : MonoBehaviour
             GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().destinationScene = "";
             GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().DisableMarkers();
             GameObject.Find("PlayerMarker").GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().ToggleMarkers();
-            
+            GameObject.Find("GoInside").GetComponent<GoInsideScript>().insideScenario = false;
         }
 
 
@@ -78,8 +78,17 @@ public class DialogManager : MonoBehaviour
             //continue dialog, make sure there actually is more conversation too
             if (Input.GetButtonDown("Fire1") && currentlyTyping == false && index <= sentences.Length - 1 && textDisplay.text == sentences[index])
             {
+                //going from dialogue to game over screen if you are dead
+                if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().playerHealth <= 1)
+                {
+                    Debug.Log(" goto player game over");
+                }
+                if (GameObject.Find("CharacterIcons").GetComponent<HealthStates>().plantHealth <= 1)
+                {
+                    Debug.Log(" goto plant game over");
+                }
                 //last index is blank so it looks like the conversation is finished
-                index ++;
+                index++;
                 textDisplay.text = "";
                 currentlyTyping = true;
                 StartCoroutine(Typing());

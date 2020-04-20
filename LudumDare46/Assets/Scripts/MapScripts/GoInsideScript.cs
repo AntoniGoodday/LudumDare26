@@ -12,6 +12,8 @@ public class GoInsideScript : MonoBehaviour
     public int LocationSceneNumber { get => locationSceneNumber; set => locationSceneNumber = value; }
     public string destinationScene;
     public GameObject playerObject;
+    public TextMeshProUGUI buttonText;
+    public bool insideScenario = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +34,16 @@ public class GoInsideScript : MonoBehaviour
         {
             EnableVisibility();
         }
+        //the button on the text
+        if (playerObject.GetComponent<PlayerMapScript>().CurrentLocation != null)
+        {
+            buttonText.text = playerObject.GetComponent<PlayerMapScript>().CurrentLocation.GetComponent<LocationMarkerScript>().destinationTitle;
+        }
     }
 
     public void OnGoInside()
     {
+        insideScenario = true;
         SceneManager.LoadScene(destinationScene, LoadSceneMode.Additive);
         //set the markers destination scene as blank so you cant repeat the same scenario over and over
 

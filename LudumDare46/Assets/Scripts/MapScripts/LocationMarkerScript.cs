@@ -20,6 +20,8 @@ public class LocationMarkerScript : MonoBehaviour
     public int SceneNumber { get => sceneNumber; set => sceneNumber = value; }
 
     public string destinationScene;
+    //the destination title is the words on the button you click to enter the scene
+    public string destinationTitle;
     public bool markerActive = false;
     public bool markerClear = false;
     public int markerValue;
