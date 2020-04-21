@@ -10,6 +10,8 @@ public class PlayerMapScript : MonoBehaviour
 
     [SerializeField]
     RandomEncounters randomEncounters;
+    [SerializeField]
+    ParticleSystem pSys;
 
     AudioSource footsteps;
 
@@ -53,6 +55,7 @@ public class PlayerMapScript : MonoBehaviour
     IEnumerator LerpToDestination(GameObject destination)
     {
         footsteps.Play();
+        pSys.Play();
         isMoving = true;
         goInsideScript.DisableVisibility();
         float _elapsedTime = 0;
@@ -72,5 +75,6 @@ public class PlayerMapScript : MonoBehaviour
         currentLocation.GetComponent<LocationMarkerScript>().markerActive = true;
         isMoving = false;
         footsteps.Stop();
+        pSys.Stop();
     }
 }
